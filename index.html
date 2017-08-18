@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>git-cheat-sheet</title>
+<meta charset="utf-8">
+<meta name="Referrer" content="origin">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+
+	html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, em, img, ins, kbd, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+		margin		: 0;
+		padding		: 0;
+		border		: 0;
+		outline		: 0;
+		font-size	: 100%;
+		vertical-align	: baseline;
+		background	: transparent;
+		list-style	: none;
+	}
+	fieldset, img { border: 0 none; }
+	dl, ul, ol, menu, li { list-style: none; }
+	blockquote, q { quotes: none; }
+	input, select, textarea, button { vertical-align: middle; }
+	button { border: 0 none; background-color: transparent; cursor: pointer; }
+	
+	
+	
+	
+	
+	body {
+		width		: 100%;
+		margin		: 0 auto;
+		line-height	: 1;
+		font-size	: 1em;
+		font-family : Georgia, serif;
+		background-color	: #0f192a;
+		color		: #e6eaed;
+	}
+	
+	
+	
+	
+	
+	.section {
+		position	: relative;
+		overflow	: hidden;
+		/*
+		margin		: 10px 5px;
+		*/
+		margin		: 10px 0;
+	}
+	.section-control {
+		padding		: 10px;
+	}
+	.section-content {
+		/*
+		border		: 5px solid #204940;
+		border-radius	: 0.5em;
+		*/
+	}
+
+
+
+
+
+	.git-step-container {
+		position	: absolute;
+		width		: 100%;
+	}
+
+	.git-step-st, .git-step-wd, .git-step-sa, .git-step-lr, .git-step-rr {
+		float		: left;
+		height		: 4096px;
+	}
+
+	.git-step-st   { background-color: #b7ded2; }
+	.git-work-arrow-st { border-color: #b7ded2; }
+
+	.git-step-wd   { background-color: #f6a6b2; }
+	.git-work-arrow-wd { border-color: #f6a6b2; }
+
+	.git-step-sa   { background-color: #f7c297; }
+	.git-work-arrow-sa { border-color: #f7c297; }
+
+	.git-step-lr   { background-color: #ffecb8; }
+	.git-work-arrow-lr { border-color: #ffecb8; }
+
+	.git-step-rr   { background-color: #90d2d8; }
+	.git-work-arrow-rr { border-color: #90d2d8; }
+
+
+
+
+
+	.git-work-container {
+		position	: relative;
+	}
+
+	.git-work-line {
+		margin		: 4px 0;
+		min-height	: 20px;
+	}
+
+	.git-work-wrap {
+		float		: left;
+		vertical-align		: top;
+	}
+
+	.git-work-line:after, .git-work-wrap:after {
+		content		: '';
+		display		: block;
+		clear		: both;
+	}
+
+	.git-work-arrow-l, .git-work-arrow-r {
+		width		: 0;
+		height		: 0;
+		border-width	: 10px;
+		border-style	: solid;
+	}
+
+	.git-work-arrow-l {
+		float		: left;
+		margin-left			: 2px;
+		border-left-width	: 0;
+		border-right-color	: #063b00;
+	}
+
+	.git-work-arrow-r {
+		float		: right;
+		margin-right		: 2px;
+		border-right-width	: 0;
+		border-left-color	: #063b00;
+	}
+
+	.git-work {
+		margin		: 0 12px;
+		padding		: 2px 4px;
+		min-height	: 14px;
+		line-height	: 12Px;
+		font-size	: 12px;
+		border-width	: 1px;
+		border-style	: solid;
+		border-color	: #063b00;
+		border-radius	: 0.5em;
+		background-color	: #063b00;
+	}
+
+	.git-work-arrow-l ~ .git-work {
+		border-top-left-radius		: 0;
+		border-bottom-left-radius	: 0;
+	}
+	.git-work-arrow-r ~ .git-work {
+		border-top-right-radius		: 0;
+		border-bottom-right-radius	: 0;
+	}
+	
+	.git-work-info .git-work-arrow-l { border-right-color : #0074d9; }
+	.git-work-info .git-work-arrow-r { border-left-color  : #0074d9; }
+	.git-work-info .git-work { border-color : #0074d9; background-color : #0074d9; }
+	
+	.git-work-safe .git-work-arrow-l { border-right-color : #001f3f; }
+	.git-work-safe .git-work-arrow-r { border-left-color  : #001f3f; }
+	.git-work-safe .git-work { border-color : #001f3f; background-color : #001f3f; }
+	
+	.git-work-soft .git-work-arrow-l { border-right-color : #7b4a12; }
+	.git-work-soft .git-work-arrow-r { border-left-color  : #7b4a12; }
+	.git-work-soft .git-work { border-color : #7b4a12; background-color : #7b4a12; }
+	
+	.git-work-hard .git-work-arrow-l { border-right-color : #800000; }
+	.git-work-hard .git-work-arrow-r { border-left-color  : #800000; }
+	.git-work-hard .git-work { border-color : #800000; background-color : #800000; }
+
+	.git-work > a {
+		display		: block;
+		padding		: 0 2px 0 12px;
+		min-height	: 12px;
+		border		: 1px solid transparent;
+		border-radius	: 0.5em;
+	}
+
+	.git-work > a:hover {
+		border-color		: #f012be;
+		background-color	: #f012be;
+	}
+
+	.git-usage {
+		/*
+		font-family	: monospace, 'Courier New', 'Lucida Console';
+		*/
+		font-family	: Consolas;
+		text-indent	: -10px;
+		text-decoration	: none;
+		white-space	: pre-wrap;
+		color		: #ffffff;
+		cursor		: auto;
+	}
+	
+	label {
+		cursor		: pointer;
+	}
+
+</style>
+
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+<script src="debug.js"></script>
+<script src="gitworks.js"></script>
+
+</head>
+
+<body>
+
+	<div class="section section-control">
+		<div style="cursor:default;">
+			<span style="padding-right:30px;font-size:2em;">gitCheatSheet</span>
+			<span style="font-size:1.5em;">
+				<label for="zoom-level-080"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-080" value="0.8">80%</label>&nbsp;
+				<label for="zoom-level-100"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-100" value="1.0">100%</label>&nbsp;
+				<label for="zoom-level-120"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-120" value="1.2">120%</label>&nbsp;
+				<label for="zoom-level-140"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-140" value="1.4">140%</label>&nbsp;
+				<label for="zoom-level-160"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-160" value="1.6">160%</label>&nbsp;
+				<label for="zoom-level-180"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-180" value="1.8">180%</label>&nbsp;
+				<label for="zoom-level-200"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-200" value="2.0">200%</label>&nbsp;
+			</span>
+		</div>
+	</div>
+
+	<div class="section section-content">
+		
+		<ul class="git-step-container">
+
+			<li class="git-step-st"></li>
+			<li class="git-step-wd"></li>
+			<li class="git-step-sa"></li>
+			<li class="git-step-lr"></li>
+			<li class="git-step-rr"></li>
+
+		</ul>
+		
+		<ul class="git-work-container">
+		</ul>
+		
+	</div>
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
+<![endif]-->
+
+<script type='text/javascript'>
+//<![CDATA[
+	
+	
+	
+	var escapeHtml = (function() {
+		
+		var f = function(s) {
+			return dst[s] || s;
+		};
+		var src = /[&<>"']/g;
+		var dst = { "&" : "&amp;", "<" : "&lt;", ">" : "&gt;", '"' : "&quot;", "'" : "&#39;" };
+		
+		return function(s) {
+			return (s + "").replace(src, f);
+		};
+	})();
+	
+	
+	
+	$(document).ready(function() {
+		
+		
+		
+		var steps = (function() {
+			
+			var stepArr = [
+				{ name: "st", width: 15 },
+				{ name: "wd", width: 15 },
+				{ name: "sa", width: 28 },
+				{ name: "lr", width: 26 },
+				{ name: "rr", width: 16 },
+			];
+			var stepMap = {};
+			
+			var i, pos = 0;
+			
+			for (i in stepArr) {
+				if (isNaN(i)) continue; // IE8
+				
+				$(".git-step-" + stepArr[i].name).css("width", stepArr[i].width + "%"); // FIXIT
+				
+				stepArr[i].pos = {};
+				
+				stepArr[i].pos.l = pos;
+				pos += stepArr[i].width / 2;
+				stepArr[i].pos.c = pos;
+				pos += stepArr[i].width / 2;
+				stepArr[i].pos.r = pos;
+				
+				stepMap[stepArr[i].name] = stepArr[i];
+				stepMap[i] = stepArr[i];
+			}
+			stepMap.length = stepArr.length;
+			
+			return stepMap;
+		})();
+//assert(function(){ window["steps"] = steps; return true});
+		
+		
+		
+		(function() {
+			var i, j, k, works, html = "";
+			var lArr, rArr, lPos, rPos, width, mleft, usage;
+			
+			for (i in gitapi.worklines) {
+				if (isNaN(i)) continue; // IE8
+				
+				works = gitapi.worklines[i].works;
+				
+				html += '<li class="git-work-line">';
+msglog(html);
+				
+				rPos = 0;
+				
+				for (j in works) {
+					if (isNaN(j)) continue; // IE8
+					
+					lArr = works[j].l.trim().split(/[ \t\r\n]+/);
+					rArr = works[j].r.trim().split(/[ \t\r\n]+/);
+					
+					lPos = steps[lArr[0]].pos[lArr[1]];
+assert(lArr[1] == "l" || lArr[1] == "c");
+					mleft = lPos - rPos;
+assert(0 <= mleft);
+					rPos = steps[rArr[0]].pos[rArr[1]];
+assert(rArr[1] == "r" || rArr[1] == "c");
+					width = rPos - lPos;
+assert(0 < width);
+					
+					html += '<div class="git-work-wrap' + (works[j].type ? ' git-work-' + works[j].type : '')
+							+ '" style="width:' + width + '%; margin-left:' + mleft + '%;">';
+					
+assert(!works[j].type || "info" == works[j].type || "meta" == works[j].type || "safe" == works[j].type || "soft" == works[j].type || "hard" == works[j].type);
+
+msglog(html,1);
+					
+					if (lArr.length > 2) {
+						if (lArr[2] == "arrow") {
+							html += '<div class="git-work-arrow-l git-work-arrow-' + lArr[0] +'"></div>';
+msglog(html,2);
+						} else {
+assert();
+						}
+					}
+					if (rArr.length > 2) {
+						if (rArr[2] == "arrow") {
+							html += '<div class="git-work-arrow-r git-work-arrow-' + rArr[0] +'"></div>';
+msglog(html,2);
+						} else {
+assert();
+						}
+					}
+					html += '<div class="git-work">';
+msglog(html,2);
+					
+					for (k in works[j].usages) {
+						if (isNaN(k)) continue; // IE8
+						
+						usage = escapeHtml(works[j].usages[k].usage.trim());
+						
+						html += '<a class="git-usage" href="' + gitdoc.baseurl + '/' + (gitdoc.path[usage.match(/[^ \t\n]+/)[0].toLowerCase()] || '')
+								+ '" target="_blank">'+ usage + '</a>';
+msglog(html,3);
+					}
+					//html += '</div></div>';
+					html += '</div>';
+msglog(html,2);
+					html += '</div>';
+msglog(html,1);
+				}
+				html += '</li>';
+msglog(html);
+			}
+			$(".git-work-container").html(html);
+		})();
+		
+		
+		
+		$(".git-work-zoom-level").click(function() {
+			
+			if (navigator.userAgent.toLowerCase().search("trident") >= 0) {
+				$(".section-content").css({ "zoom" : this.value, "width" : 100 / this.value + "%" });
+			} else {
+				$(".section-content").css({ "zoom" : this.value });
+			}
+		});
+		
+		
+		
+	});
+	
+//]]>
+</script>
+
+</body>
+</html>
