@@ -3,7 +3,7 @@
 
 var gitapi = {
 	
-	version		: "2.0.0",
+	version		: "1.0.0",
 	description	: "syntax based v2.0.0, but tested v1.7.1",
 	
 	worklines	: [
