@@ -200,21 +200,32 @@
 		cursor		: auto;
 	}
 	
+	
+	
+	
+	
 	.section-control {
 		padding-bottom	: 2px;
 		line-height	: 2em;
 		cursor		: default;
 	}
-	.section-control a, label {
+	.section-control a {
+		font-size	: 1em;
+		color		: orange;
+		text-decoration	: none;
+		cursor		: pointer;
+	}
+	.section-control label {
+		display		: inline-block;
+		padding-right	: 5px;
+		font-size	: 1.5em;
+		white-space	: nowrap;
 		cursor		: pointer;
 	}
 
 </style>
 
-<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
--->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
 <script src="debug.js"></script>
 <script src="gitworks.js"></script>
@@ -224,23 +235,21 @@
 <body>
 
 	<div class="section section-control">
-		<div style="float:left;">
-			<span style="padding-right:30px;font-size:2em;">gitCheatSheet</span>
+		<div style="float:left;padding-right:30px;">
+			<span style="font-size:2em;">gitCheatSheet</span>
 		</div>
-		<div style="display:inline-block;">
-			<span style="font-size:1.5em;">
-				<label for="zoom-level-060"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-060" value="0.6">60%</label>&nbsp;
-				<label for="zoom-level-080"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-080" value="0.8">80%</label>&nbsp;
-				<label for="zoom-level-100"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-100" value="1.0">100%</label>&nbsp;
-				<label for="zoom-level-120"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-120" value="1.2">120%</label>&nbsp;
-				<label for="zoom-level-140"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-140" value="1.4">140%</label>&nbsp;
-				<label for="zoom-level-160"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-160" value="1.6">160%</label>&nbsp;
-				<label for="zoom-level-180"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-180" value="1.8">180%</label>&nbsp;
-				<label for="zoom-level-200"><input class="git-work-zoom-level" type="radio" name="zoom-level" id="zoom-level-200" value="2.0">200%</label>&nbsp;
-			</span>
+		<div style="float:right;padding-top:6px;padding-left:30px;">
+			<a href="https://github.com/ninanoo/gitCheatSheet">https://github.com/ninanoo/gitCheatSheet</a>
 		</div>
-		<div style="float:right;padding-top:5px;">
-			<a style="padding-left:30px;font-size:1em;color:orange;text-decoration:none;" href="https://github.com/ninanoo/gitCheatSheet">https://github.com/ninanoo/gitCheatSheet</a>
+		<div style="display:inline-block;padding-top:4px;">
+			<label for="zoom-060"><input type="radio" name="zoom" id="zoom-060" value="0.6">60%</label>
+			<label for="zoom-080"><input type="radio" name="zoom" id="zoom-080" value="0.8">80%</label>
+			<label for="zoom-100"><input type="radio" name="zoom" id="zoom-100" value="1.0" checked="checked">100%</label>
+			<label for="zoom-120"><input type="radio" name="zoom" id="zoom-120" value="1.2">120%</label>
+			<label for="zoom-140"><input type="radio" name="zoom" id="zoom-140" value="1.4">140%</label>
+			<label for="zoom-160"><input type="radio" name="zoom" id="zoom-160" value="1.6">160%</label>
+			<label for="zoom-180"><input type="radio" name="zoom" id="zoom-180" value="1.8">180%</label>
+			<label for="zoom-200"><input type="radio" name="zoom" id="zoom-200" value="2.0">200%</label>
 		</div>
 	</div>
 
@@ -411,7 +420,7 @@ msglog(html);
 		
 		
 		
-		$(".git-work-zoom-level").click(function() {
+		$('input[name="zoom"]').click(function() {
 			
 			if (navigator.userAgent.toLowerCase().search("trident") >= 0) {
 				$(".section-content").css({ "zoom" : this.value, "width" : 100 / this.value + "%" });

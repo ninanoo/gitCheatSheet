@@ -1,6 +1,9 @@
 
 
 
+var global = window;
+
+
 var jsperf = function(f,c) { // usage: jsperf((r)=>{  },999)
 	var i, r, t = Date.now();
 	for (i = 0; i < c; i++) { r = f(r); }
@@ -9,7 +12,7 @@ var jsperf = function(f,c) { // usage: jsperf((r)=>{  },999)
 
 
 var assert = function(o) {
-	if (!_DEV_DBG_) return;
+	if (!("_DEV_DBG_" in global) || !_DEV_DBG_) return;
 	if (typeof o == "function") o = o();
 	if (!o && confirm("assertion! run debug?")) debugger;
 };
@@ -21,7 +24,7 @@ var msglog = (function() {
 	var n1 = 0, n2 = 0, n3 = [];
 	
 	return function(s, t, c) {
-		if (!_DEV_LOG_) return;
+		if (!("_DEV_LOG_" in global) || !_DEV_LOG_) return;
 		s += "";
 		if ("" == m || s.indexOf(m) != 0) {
 			n1 = +n1 + 1 + "";

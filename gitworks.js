@@ -4,105 +4,9 @@
 var gitapi = {
 	
 	version		: "1.0.0",
-	description	: "syntax based v2.0.0, but tested v1.7.1",
+	description	: "syntax based git v2.0.0, but tested v1.7.1",
 	
 	worklines	: [
-
-
-
-/*
-		{
-			  description : "save from working directory to remote repository"
-			, works : [
-				{
-					  description : "staging"
-					, l : "st c"
-					, r : "wd c arrow"
-					, usages : [
-						{
-							  description : "normal usage"
-							, usage : "stash apply [<stash>]"
-							, link  : ""
-						}, {
-							  description : ""
-							, usage : "stash pop"
-							, link  : ""
-						}
-					]
-				} , {
-					  description : ""
-					, l : "wd c"
-					, r : "sa c arrow"
-					, usages : [
-						{
-							  description : ""
-							, usage : "add ..."
-							, link  : "http://ninano.ga/git-1.7.1-help/git-add.html"
-						}
-					]
-				} , {
-					  description : ""
-					, l : "sa c"
-					, r : "lr c arrow"
-					, usages : [
-						{
-							  description : ""
-							, usage : "commit -m 'msg'"
-							, link  : ""
-						}
-					]
-				} , {
-					  description : ""
-					, l : "lr c"
-					, r : "rr c arrow"
-					, usages : [
-						{
-							  description : ""
-							, usage : "push"
-							, link  : ""
-						}
-					]
-				}
-			]
-		}, {
-			  description : ""
-			, works : [
-				{
-					  description : ""
-					, l : "st l"
-					, r : "st r"
-					, usages : [
-						{
-							  description : ""
-							, usage : "stash list"
-							, link  : ""
-						}
-					]
-				} , {
-					  description : ""
-					, l : "wd c arrow"
-					, r : "rr c"
-					, usages : [
-						{
-							  description : ""
-							, usage : "clone ..."
-							, link  : ""
-						}
-					]
-				}
-			]
-		},
-*/
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -263,10 +167,6 @@ var gitapi = {
 { description : "", works : [
 { l: "lr c", r: "rr c arrow", type: "meta", usages: [ { usage: "push        <remote> <tagname>" }, { usage: "push --tags <remote>" } ] },
 ]},
-
-
-
-
 
 
 
