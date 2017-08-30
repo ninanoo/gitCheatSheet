@@ -21,7 +21,7 @@ var gitapi = {
 { l: "lr c", r: "rr c", type: "info", usages: [ { usage: "remote show <remote>" }, { usage: "ls-remote  [<remote>]" } ] },
 ]},
 { description : "", works : [
-{ l: "lr l", r: "lr r", type: "meta", usages: [ { usage: "remote add <name> <url>" }, { usage: "remote rename <old name> <new name>" }, { usage: "remote remove <name>" } ] },
+{ l: "lr l", r: "lr r", type: "meta", usages: [ { usage: "remote add <name> <url>" }, { usage: "remote set-url <name> <url>" }, { usage: "remote rename <old name> <new name>" }, { usage: "remote remove <name>" } ] },
 ]},
 { description : "", works : [
 { l: "wd l arrow", r: "rr c", type: "safe", usages: [ { usage: "clone [-o <new remote name>] <remote> [<new directory name>]" } ] },
