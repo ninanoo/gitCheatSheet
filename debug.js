@@ -1,7 +1,10 @@
 
 
 
-var global = window;
+global = (typeof self === 'object' && self.self === self && self)
+		|| (typeof global === 'object' && global.global === global && global)
+		|| this
+		;
 
 
 var jsperf = function(f,c) { // usage: jsperf((r)=>{  },999)
