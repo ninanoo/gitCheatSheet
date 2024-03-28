@@ -2,10 +2,10 @@
 
 
 var gitapi = {
-	
+
 	version		: "1.0.0",
 	description	: "syntax based git v2.0.0, but tested v1.7.1",
-	
+
 	worklines	: [
 
 
@@ -50,14 +50,14 @@ var gitapi = {
 { l: "lr l", r: "lr r", type: "info", usages: [ { usage: "log [-p] [-<show-limit>] [--all] [--no-merges] [--graph] [--decorate] [--stat|--name-status] [--abbrev-commit] [--relative-date] [--pretty=(oneline|format:'<format>'] [--author=<name>] [--committer=<name>] [--since=<time>] [--until=<time>] [--grep=<commit-text>] [-S<search-text>] [<path>…]" } ] },
 ]},
 { description : "", works : [
-{ l: "lr l", r: "lr r", type: "info", usages: [ { usage: "diff <commit> <commit>" } ] },
+{ l: "lr l", r: "lr r", type: "info", usages: [ { usage: "diff <commit> <commit> [<path>…​]" } ] },
 ]},
 { description : "", works : [
-{ l: "wd c", r: "sa c", type: "info", usages: [ { usage: "diff" } ] },
-{ l: "sa c", r: "lr c", type: "info", usages: [ { usage: "diff --cached [<commit>]" } ] },
+{ l: "wd c", r: "sa c", type: "info", usages: [ { usage: "diff [<path>…​]" } ] },
+{ l: "sa c", r: "lr c", type: "info", usages: [ { usage: "diff --cached [<commit>] [<path>…​]" } ] },
 ]},
 { description : "", works : [
-{ l: "wd c", r: "lr c", type: "info", usages: [ { usage: "diff <commit or branch>" } ] },
+{ l: "wd c", r: "lr c", type: "info", usages: [ { usage: "diff <commit or branch> [<path>…​]" } ] },
 ]},
 { description : "", works : [
 { l: "st l arrow", r: "sa r", type: "soft", usages: [ { usage: "stash save    [-u|-a] [<msg>]" } ] },
@@ -191,9 +191,9 @@ var gitapi = {
 
 
 var gitdoc = {
-	
+
 	baseurl : "https://git-scm.com/docs",
-	
+
 	path : {
 		"git" : "git",
 		"config" : "git-config",
