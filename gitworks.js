@@ -128,6 +128,9 @@ var gitapi = {
 { l: "lr l", r: "lr r", type: "meta", usages: [ { usage: "branch <new branch>" } ] },
 ]},
 { description : "", works : [
+{ l: "lr l", r: "lr r", type: "meta", usages: [ { usage: "branch -m <new branch name>" } ] },
+]},
+{ description : "", works : [
 { l: "lr l", r: "lr r", type: "meta", usages: [ { usage: "branch -d <merged branch>" } ] },
 ]},
 { description : "", works : [
